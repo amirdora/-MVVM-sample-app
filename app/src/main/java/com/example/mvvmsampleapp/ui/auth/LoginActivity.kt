@@ -14,6 +14,7 @@ import com.example.mvvmsampleapp.data.db.entities.User
 import com.example.mvvmsampleapp.databinding.ActivityLoginBinding
 import com.example.mvvmsampleapp.utils.hide
 import com.example.mvvmsampleapp.utils.show
+import com.example.mvvmsampleapp.utils.snackBar
 import com.example.mvvmsampleapp.utils.toast
 import kotlin.math.log
 
@@ -38,16 +39,16 @@ class LoginActivity : AppCompatActivity(), AuthListener {
 
     override fun onStarted() {
         binding.progressBar.show()
-        toast("Login started")
     }
 
     override fun onSuccess(user: User) {
         binding.progressBar.hide()
-        toast("${user.name} is logged in")
+        binding.rootLayout.snackBar("${user.name} is logged in")
+
     }
 
     override fun onError(errorMessage: String) {
         binding.progressBar.hide()
-        toast(errorMessage)
+        binding.rootLayout.snackBar(errorMessage)
     }
 }
